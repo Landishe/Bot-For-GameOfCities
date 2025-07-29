@@ -17,7 +17,7 @@ theme: /
         a: Привет! Предлагаю сыграть в игру "Города". Кто загадывает город: компьютер или пользователь?
 
         state: User
-            intent: /User
+            intent: /user
             a: Назовите город
             script:
                 $session.keys = Object.keys($Cities);
@@ -25,28 +25,28 @@ theme: /
             go!: /LetsPlayCitiesGame
 
         state: Computer
-            intent: /Computer
+            intent: /computer
             script: 
                 $session.keys = Object.keys($Cities)
-                var city = $Cities[chooseRandCityKeys($session.keys)].value.name
+                var city = $Cities[chooseRandCityKey($session.keys)].value.name
                 $reactions.answer(city)
                 $session.prevBotCity = city
 
             go!: /LetsPlayCitiesGame
 
         state: /LocalCatchAll
-            event: NoMatch
+            event: noMatch
             a:Это не похоже на ответ. Попробуйте еще раз.
         
     state: /LetsPlayCitiesGame
         state: CityPattern
             q: * $City *
             script: 
-                if(isAllFullNameOfCity){
+                if(isAllFullNameOfCity()){
                     if(checkLetter($parseTree._City.name, $session.prevBotCity) == true || $session.prevBotCity == 0){
                         var removeCity = findByName($parseTree._City.name, $session.keys, $Cities)
 
-                        if(checkLetter($parseTree, $session.keys, $Cities) == true){
+                        if(checkCity($parseTree, $session.keys, $Cities) == true){
                             $session.keys.splice(removeCity, 1)
                             var keys = responseCity($parseTree, $session.keys, $Cities)
                             if(key == 0) {
@@ -62,9 +62,9 @@ theme: /
                 } else $reactions.answer("Используйте только полные названия городов")
 
         state: NoMatch
-            event!: noManch
+            event!: noMatch
             a: Я не знаю такого города. Попробуйте ввести другой город
         
     state: EndGame
-        intent!: /endThisGeme
+        intent!: /endThisGame
         a: Очень жаль! Если передумаешь — скажи "давай поиграем"
