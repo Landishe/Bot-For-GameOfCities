@@ -11,13 +11,13 @@ function responseCity (parseTree, keys, cities) {
     return response
 }
 
-function finByName (city, keys, cities){
+function findByName (city, keys, cities){
     var responce = 0
     var i = 0
 
     keys.forEach(function(elem){
-        if(cities[elem].value.name = city){
-            responce = i
+        if (cities[elem].value.name == city) {
+            response = i
         }
         i++
     })
@@ -53,6 +53,6 @@ function chooseRandCityKey(keys){
     return $jsapi.random(i)
 }
 
-function isAFullNameofCity() {
+function isAllFullNameOfCity() {
     return $jsapi.context().parseTree._City.name.toUpperCase() == $jsapi.context().parseTree.text.toUpperCase();
 }
