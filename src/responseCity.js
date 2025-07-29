@@ -12,7 +12,7 @@ function responseCity (parseTree, keys, cities) {
 }
 
 function findByName (city, keys, cities){
-    var responce = 0
+    var response = 0
     var i = 0
 
     keys.forEach(function(elem){
@@ -22,7 +22,7 @@ function findByName (city, keys, cities){
         i++
     })
 
-    return responce
+    return response
 }
 
 function checkCity (parseTree, keys, cities) {
@@ -38,11 +38,11 @@ function checkCity (parseTree, keys, cities) {
 }
 
 function checkLetter(playerCity, botCity){
-    var responce = false
+    var response = false
     if ((playerCity[0].toLowerCase() == botCity[botCity.lenght - 1]) || (playerCity[0].toLowerCase() == botCity[botCity.lenght - 2])){
-        responce = true
+        response = true
     }
-    return responce
+    return response
 }
 
 function chooseRandCityKey(keys){

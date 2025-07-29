@@ -48,7 +48,7 @@ theme: /
 
                         if(checkCity($parseTree, $session.keys, $Cities) == true){
                             $session.keys.splice(removeCity, 1)
-                            var keys = responseCity($parseTree, $session.keys, $Cities)
+                            var key = responseCity($parseTree, $session.keys, $Cities)
                             if(key == 0) {
                                 $reactions.answer("Я сдаюсь")
                             } else {
@@ -62,7 +62,7 @@ theme: /
                 } else $reactions.answer("Используйте только полные названия городов")
 
         state: NoMatch
-            event!: noMatch
+            event: noMatch
             a: Я не знаю такого города. Попробуйте ввести другой город
         
     state: EndGame
